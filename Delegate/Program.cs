@@ -4,12 +4,10 @@ using Delegate;
 Console.WriteLine("Hello, World!");
 
 Generator generator = new Generator();
-generator.PriceChangeHandler = Showprice;
+generator.PriceChangeHandler = Showprice; // регистрируем метод через свойство PriceChangeHandler
 
-void Showprice(int price)
-{
-    Console.WriteLine($"Новая цена {price}");
-}
+void Showprice(int price) => Console.WriteLine($"Новая цена {price}");
+
 
 generator.Start();
 
