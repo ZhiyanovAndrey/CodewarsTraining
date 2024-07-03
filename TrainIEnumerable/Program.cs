@@ -35,13 +35,13 @@ static IEnumerable<string> ConvertToFooBar(IEnumerable<int> enumerable)
 
     return query;
 
-    foreach (int a in enumerable)
-    {
-        if (a % 15 == 0) yield return "foobar"; //
-        if (a % 5 == 0) yield return "bar";
-        if (a % 3 == 0) yield return "foo";
-        else yield return a.ToString();
-    }
+    //foreach (int a in enumerable)
+    //{
+    //    if (a % 15 == 0) yield return "foobar"; //
+    //    if (a % 5 == 0) yield return "bar";
+    //    if (a % 3 == 0) yield return "foo";
+    //    else yield return a.ToString();
+    //}
 }
 
 

@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Delegate
+﻿namespace Delegate
 {
-    internal class Generator
+    public class Generator
     {
+        public delegate void PriceChange(int Price);
+        public PriceChange PriceChangeHandler { get; set; }
+
+        public void Start()
+        {
+            while (true)
+            {
+                int priceVTB = (new Random()).Next(100);
+                PriceChangeHandler(priceVTB);   
+                Thread.Sleep(2000);
+            }
+        }
     }
 }
