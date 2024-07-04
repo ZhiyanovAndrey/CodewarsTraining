@@ -9,13 +9,13 @@
         {
             string go = Console.ReadLine();
             bool repeat= true;
-            while (go.ToUpper() != "Д") // бесконечный цикл
+            while (repeat) // бесконечный цикл
             {
                 int priceVTB = (new Random()).Next(100);
                 PriceChangeHandler(priceVTB);  // оповестим о новой цене 
                 Thread.Sleep(2000);
 
-                string go = Console.ReadLine();
+      
                 if (go.ToUpper() != "Д")
                 {
                     repeat = false;
