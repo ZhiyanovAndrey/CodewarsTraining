@@ -7,21 +7,20 @@
 
         public void Start()
         {
-           
-            bool repeat= true;
 
-            while (repeat==true) 
+            bool repeat = true;
+    
+
+
+            while (true) // безконечный цикл
             {
-                string go = Console.ReadLine();
+
 
                 int priceVTB = (new Random()).Next(100);
                 PriceChangeHandler(priceVTB);  // оповестим о новой цене 
                 Thread.Sleep(2000);
 
-                if (go.ToUpper() != "Y") // как прервать поток
-                {
-                    repeat = false;
-                }
+
             }
 
 
