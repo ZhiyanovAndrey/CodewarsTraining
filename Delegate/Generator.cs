@@ -3,25 +3,28 @@
     public class Generator
     {
         public delegate void PriceChange(int Price);
-        public PriceChange PriceChangeHandler { get; set; } // через свойство можно зарегистрировать ссылку на метод
+        public PriceChange PriceChangeHandler { get; set; } // через свойство регистрируем ссылку на метод
 
         public void Start()
         {
-            string go = Console.ReadLine();
+           
             bool repeat= true;
-            while (true) // бесконечный цикл
+
+            while (repeat==true) 
             {
+                string go = Console.ReadLine();
+
                 int priceVTB = (new Random()).Next(100);
                 PriceChangeHandler(priceVTB);  // оповестим о новой цене 
                 Thread.Sleep(2000);
 
-      
-                //if (go.ToUpper() != "Д")
-                //{
-                //    repeat = false;
-                //}
-
+                if (go.ToUpper() != "Y") // как прервать поток
+                {
+                    repeat = false;
+                }
             }
+
+
         }
     }
 }
