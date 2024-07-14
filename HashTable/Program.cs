@@ -19,9 +19,12 @@ Console.WriteLine("Hello, World!");
 // суммирует все пары целых чисел в массиве
 //TwoSum(new[] { 1, 2, 3 }, 4).OrderBy(a => a).ToArray();
 
-//Print(TwoSum(new[] { 1, 2, 3, 2,5,8,3,2 }, 4)); // суммирует в пару число, по неск. раз
-Print(TwoSumHash(new[] { 1, 2, 3, 2,5,8,3,2 }, 4)); // суммирует в пару число, по неск. раз
 
+int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2 };
+Print(TwoSum(arr, 5)); // суммирует в пару число, по неск. раз
+//Print(TwoSumHash(arr, 4)); // 1 и 2; 1 и 6
+
+arr.Where(x=>);
 
 Console.ReadKey();
 
@@ -45,7 +48,7 @@ static int[] TwoSum(int[] numbers, int target)
             {
                 result.Add(numbers[i]);
                 result.Add(numbers[j]);
-
+                break;  // при совпа
             }
 
         }
@@ -56,26 +59,14 @@ static int[] TwoSum(int[] numbers, int target)
 
 }
 
-static int[] TwoSumHash(int[] numbers, int target)
+static int[] TwoSumHash(IEnumerable<int> numbers, int target)
 {
-    HashSet<int> result = new HashSet<int>();
+    HashSet<int> result = new HashSet<int>(numbers);
 
 
-    for (int i = 0; i < numbers.Length - 1; i++)
-    {
-        for (int j = i + 1; j < numbers.Length; j++)
-        {
-            int a = numbers[i] + numbers[j];
-            if (a == target)
-            {
-                result.Add(numbers[i]);
-                result.Add(numbers[j]);
+   
 
-            }
-
-        }
-
-    }
+    
 
     return result.ToArray();
 
