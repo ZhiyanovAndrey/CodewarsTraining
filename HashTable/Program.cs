@@ -21,10 +21,10 @@ Console.WriteLine("Hello, World!");
 
 
 int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2 };
-Print(TwoSum(arr, 5)); // суммирует в пару число, по неск. раз
-//Print(TwoSumHash(arr, 4)); // 1 и 2; 1 и 6
+//Print(TwoSum(arr, 5)); // суммирует в пару число, по неск. раз
+Print(TwoSumHash(arr, 4)); // 1 и 2; 1 и 6
 
-arr.Where(x=>);
+//arr.Where(x=>x+(x+1));
 
 Console.ReadKey();
 
@@ -48,7 +48,7 @@ static int[] TwoSum(int[] numbers, int target)
             {
                 result.Add(numbers[i]);
                 result.Add(numbers[j]);
-                break;  // при совпа
+                break;  // при нахожд
             }
 
         }
@@ -62,7 +62,18 @@ static int[] TwoSum(int[] numbers, int target)
 static int[] TwoSumHash(IEnumerable<int> numbers, int target)
 {
     HashSet<int> result = new HashSet<int>(numbers);
-
+    foreach (var item in result)
+    {
+        foreach (var item1 in result)
+        {
+            int a = numbers[i] + numbers[j];
+            if (a == target)
+            {
+                result.Add(numbers[i]);
+                result.Add(numbers[j]);
+                            }
+        }
+    }
 
    
 
