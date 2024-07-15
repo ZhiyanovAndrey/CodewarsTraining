@@ -4,15 +4,17 @@
     {
         public delegate void PriceChange(int Price);
         public PriceChange PriceChangeHandler { get; set; } // через свойство регистрируем ссылку на метод
+        public volatile bool Repeat;
+
 
         public void Start()
         {
 
-            bool repeat = true;
-    
+
+            Repeat = true;
 
 
-            while (true) // безконечный цикл
+            while (Repeat) // безконечный цикл
             {
 
 

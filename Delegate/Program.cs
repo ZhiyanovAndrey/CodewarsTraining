@@ -12,14 +12,19 @@ string go = Console.ReadLine();
 
 if (go.ToUpper() == "Y") // как прервать поток
 {
-   
-Generator generator = new Generator();
-generator.PriceChangeHandler = Showprice; // регистрируем метод через свойство PriceChangeHandler
 
-void Showprice(int price) => Console.WriteLine($"Новая цена {price}");
+    Generator generator = new Generator();
+    generator.PriceChangeHandler = Showprice; // регистрируем метод через свойство PriceChangeHandler
 
+    void Showprice(int price) => Console.WriteLine($"Новая цена {price}");
 
-generator.Start();
+    generator.Start();
+
+    //while (true)
+    //{
+
+    Console.ReadLine();
+    //}
 
 }
 

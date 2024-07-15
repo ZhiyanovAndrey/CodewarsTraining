@@ -20,25 +20,27 @@ Console.WriteLine("Hello, World!");
 //TwoSum(new[] { 1, 2, 3 }, 4).OrderBy(a => a).ToArray();
 
 
-int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2 };
-//Print(TwoSum(arr, 5)); // суммирует в пару число, по неск. раз
-Print(TwoSumHash(arr, 4)); // 1 и 2; 1 и 6
+int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2,2, 4,0 };
+Print(TwoSum(arr, 4)); // суммирует в пару число, по неск. раз
+//Print(TwoSumHash(arr, 4)); // 1 и 2; 1 и 6
 
 //arr.Where(x=>x+(x+1));
 
 Console.ReadKey();
 
-static void Print(IEnumerable<int> ints)
+static void Print(IEnumerable<(int,int)> ints)
 {
     foreach (var item in ints)
     {
-        Console.WriteLine(item); 
+        Console.WriteLine(item);
     }
 }
 
-static int[] TwoSum(int[] numbers, int target)
+static IEnumerable<(int,int)> TwoSum(int[] numbers, int target)
 {
-    List<int> result = new List<int>();
+
+    var result = new HashSet<(int, int)>();
+
     for (int i = 0; i < numbers.Length - 1; i++)
     {
         for (int j = i + 1; j < numbers.Length; j++)
@@ -46,39 +48,46 @@ static int[] TwoSum(int[] numbers, int target)
             int a = numbers[i] + numbers[j];
             if (a == target)
             {
-                result.Add(numbers[i]);
-                result.Add(numbers[j]);
-                break;  // при нахожд
+
+                //new[] { numbers[i], numbers[j] };
+                result.Add((numbers[i], numbers[j]));// при нахожд
             }
 
         }
 
+
+
     }
 
-    return result.ToArray();
 
-}
-
-static int[] TwoSumHash(IEnumerable<int> numbers, int target)
-{
-    HashSet<int> result = new HashSet<int>(numbers);
-    foreach (var item in result)
-    {
-        foreach (var item1 in result)
-        {
-            int a = numbers[i] + numbers[j];
-            if (a == target)
-            {
-                result.Add(numbers[i]);
-                result.Add(numbers[j]);
-                            }
-        }
-    }
+    return result;
 
    
 
-    
-
-    return result.ToArray();
-
 }
+
+//static int[] TwoSumHash(IEnumerable<int> numbers, int target)
+//{
+//    //HashSet<int> result = new HashSet<int>(numbers);
+
+
+//    foreach (var item in numbers)
+//    {
+//        foreach (var item1 in result)
+//        {
+//            int a = item + item1;
+//            if (a == target)
+//            {
+//                result.Add(item);
+//                result.Add(item1);
+//            }
+//        }
+//    }
+
+
+
+
+
+//    return result.ToArray();
+
+//}

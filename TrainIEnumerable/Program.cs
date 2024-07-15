@@ -25,23 +25,23 @@ foreach (var s in ConvertToFooBar(arr))
 static IEnumerable<string> ConvertToFooBar(IEnumerable<int> enumerable)
 {
 
-    var query = enumerable.Select(x =>
-    {
-        if (x % 15 == 0) return "foobar";
-        if (x % 5 == 0) return "bar";
-        if (x % 3 == 0) return "foo";
-        return x.ToString();
-    });
-
-    return query;
-
-    //foreach (int a in enumerable)
+    //var query = enumerable.Select(x =>
     //{
-    //    if (a % 15 == 0) yield return "foobar"; //
-    //    if (a % 5 == 0) yield return "bar";
-    //    if (a % 3 == 0) yield return "foo";
-    //    else yield return a.ToString();
-    //}
+    //    if (x % 15 == 0) return "foobar";
+    //    if (x % 5 == 0) return "bar";
+    //    if (x % 3 == 0) return "foo";
+    //    return x.ToString();
+    //});
+
+    //return query;
+
+    foreach (int a in enumerable)
+    {
+        if (a % 15 == 0) yield return "foobar"; //
+        else if (a % 5 == 0) yield return "bar";
+        else if (a % 3 == 0) yield return "foo";
+        else yield return a.ToString();
+    }
 }
 
 
