@@ -4,6 +4,14 @@ Console.WriteLine("Hello, World!");
 
 
 /* 
+ * Write a function that takes an array of numbers (integers for the tests) and a target number. 
+ * It should find two different items in the array that, when added together, give the target value. 
+ * The indices of these items should then be returned in a tuple / list (depending on your language) 
+ * like so: (index1, index2). For the purposes of this kata, some tests may have multiple answers; 
+ * any valid solutions will be accepted.
+ * The input will always be valid (numbers will be an array of length 2 or greater, and all of the items 
+ * will be numbers; target will always be the sum of two different items from that array).
+ * 
  * Описание: Разработайте алгоритм, обнаруживающий в массиве все пары целых чисел, сумма которых равна заданному значению
  * 
  * Очень простое и эффективное (по времени) решение — создание хэш-таблицы, отображающей целое число в целое число. 
@@ -22,6 +30,7 @@ Console.WriteLine("Hello, World!");
 
 int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2, 2, 4, 0 };
 Print(TwoSum(arr, 4)); // суммирует в пару число, по неск. раз
+Console.WriteLine();
 Print(TwoSumIndex(arr, 4)); // 1 и 2; 1 и 6
 
 //arr.Where(x=>x+(x+1));
@@ -36,10 +45,41 @@ static void Print(IEnumerable<(int, int)> ints)
     }
 }
 
+
+static IEnumerable<(int, int)> TwoSumDictionary(int[] numbers, int target)
+{
+
+    var result = new HashSet<(int, int)>(); 
+    var dic = new Dictionary<int, int>();
+
+    for (int i = 0; i < numbers.Length - 1; i++)
+    {
+        for (int j = i + 1; j < numbers.Length; j++)
+        {
+            int a = numbers[i] + numbers[j];
+            if (a == target)
+            {
+
+                //new[] { numbers[i], numbers[j] };
+                result.Add((numbers[i], numbers[j]));
+            }
+
+        }
+
+    }
+
+
+    return result;
+
+}
+
+
 static IEnumerable<(int, int)> TwoSum(int[] numbers, int target)
 {
 
-    var result = new HashSet<(int, int)>(); // удаляет дубликаты, если 2 раза 2,2,2,2 то покажет только (2,2)
+    var result = new HashSet<(int, int)>(); // удаляет дубликаты, если 2 раза 2,2,2,2 то покажет только (2,2), если List
+                                            // то повторы с каждым значением
+
 
     for (int i = 0; i < numbers.Length - 1; i++)
     {
@@ -78,8 +118,8 @@ static IEnumerable<(int, int)> TwoSumIndex(int[] numbers, int target)
 
                 //new[] { numbers[i], numbers[j] };
                 result.Add((numbers[i], numbers[j]));
-                list.Remove(numbers[i]); 
-                list.Remove(numbers[j]); 
+                //list.Remove(numbers[i]); 
+                //list.Remove(numbers[j]); 
             }
 
         }
