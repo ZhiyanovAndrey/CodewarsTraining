@@ -12,6 +12,8 @@ Console.WriteLine("Hello, World!");
  * The input will always be valid (numbers will be an array of length 2 or greater, and all of the items 
  * will be numbers; target will always be the sum of two different items from that array).
  * 
+ * 
+ * 
  * Описание: Разработайте алгоритм, обнаруживающий в массиве все пары целых чисел, сумма которых равна заданному значению
  * 
  * Очень простое и эффективное (по времени) решение — создание хэш-таблицы, отображающей целое число в целое число. 
@@ -45,30 +47,22 @@ static void Print(IEnumerable<(int, int)> ints)
     }
 }
 
-
+// Ищем остаток от вычитания и ключ - остаток, значение - индекс
 static IEnumerable<(int, int)> TwoSumDictionary(int[] numbers, int target)
 {
 
-    var result = new HashSet<(int, int)>(); 
+    var result = new HashSet<(int, int)>();
     var dic = new Dictionary<int, int>();
 
     for (int i = 0; i < numbers.Length - 1; i++)
     {
-        for (int j = i + 1; j < numbers.Length; j++)
-        {
-            int a = numbers[i] + numbers[j];
-            if (a == target)
-            {
 
-                //new[] { numbers[i], numbers[j] };
-                result.Add((numbers[i], numbers[j]));
-            }
-
-        }
+        int delta = target - numbers[i];
+        dic.Add(delta,numbers[i]);
 
     }
 
-
+// выведем значения у которых ключ равен 
     return result;
 
 }
