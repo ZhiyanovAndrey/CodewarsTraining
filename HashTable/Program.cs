@@ -30,10 +30,11 @@ Console.WriteLine("Hello, World!");
 //TwoSum(new[] { 1, 2, 3 }, 4).OrderBy(a => a).ToArray();
 
 
-int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2, 2, 4, 0 };
-Print(TwoSum(arr, 4)); // суммирует в пару число, по неск. раз
-Console.WriteLine();
-Print(TwoSumIndex(arr, 4)); // 1 и 2; 1 и 6
+int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2, 2, 4, 0,6,6,6 };
+TwoSumDictionary(arr, 4);
+//Print(TwoSum(arr, 4)); // суммирует в пару число, по неск. раз
+//Console.WriteLine();
+//Print(TwoSumIndex(arr, 4)); // 1 и 2; 1 и 6
 
 //arr.Where(x=>x+(x+1));
 
@@ -54,14 +55,23 @@ static IEnumerable<(int, int)> TwoSumDictionary(int[] numbers, int target)
     var result = new HashSet<(int, int)>();
     var dic = new Dictionary<int, int>();
 
-    for (int i = 0; i < numbers.Length - 1; i++)
+    for (int i = 0; i < numbers.Length; i++)
     {
 
         int delta = target - numbers[i];
-        dic.Add(delta,numbers[i]);
+        dic.Add(i, numbers[i]);
+        
 
     }
 
+    foreach (var item in dic)
+    {
+
+        Console.WriteLine($"{item.Key} - {item.Value}");
+
+    }
+        
+        
 // выведем значения у которых ключ равен 
     return result;
 
