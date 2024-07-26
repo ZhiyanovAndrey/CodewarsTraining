@@ -28,9 +28,9 @@ Console.WriteLine("Hello, World!");
 
 // суммирует все пары целых чисел в массиве
 //TwoSum(new[] { 1, 2, 3 }, 4).OrderBy(a => a).ToArray();
+//int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2, 2, 4, 0, 6, 6, 6 };
 
-
-int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2, 2, 4, 0,6,6,6 };
+int[] arr = { 1,2,3};
 TwoSumDictionary(arr, 4);
 //Print(TwoSum(arr, 4)); // суммирует в пару число, по неск. раз
 //Console.WriteLine();
@@ -51,16 +51,16 @@ static void Print(IEnumerable<(int, int)> ints)
 // Ищем остаток от вычитания и ключ - остаток, значение - индекс
 static IEnumerable<(int, int)> TwoSumDictionary(int[] numbers, int target)
 {
-
+    int delta = 0;
     var result = new HashSet<(int, int)>();
     var dic = new Dictionary<int, int>();
 
     for (int i = 0; i < numbers.Length; i++)
     {
 
-        int delta = target - numbers[i];
+
         dic.Add(i, numbers[i]);
-        
+
 
     }
 
@@ -70,9 +70,27 @@ static IEnumerable<(int, int)> TwoSumDictionary(int[] numbers, int target)
         Console.WriteLine($"{item.Key} - {item.Value}");
 
     }
-        
-        
-// выведем значения у которых ключ равен 
+    Console.WriteLine();
+  
+
+    for (int i = 0; i < numbers.Length; i++)
+    {
+        delta = target - numbers[i];
+
+        foreach (var item in dic)
+        {
+
+            if (delta == item.Value)
+            {
+                Console.WriteLine($"{i}-{item.Key}") ;
+            }
+
+        }
+
+    }
+
+
+    // выведем значения у которых ключ равен 
     return result;
 
 }
