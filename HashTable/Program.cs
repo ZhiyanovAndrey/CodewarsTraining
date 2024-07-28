@@ -31,7 +31,7 @@ Console.WriteLine("Hello, World!");
 //int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2, 2, 4, 0, 6, 6, 6 };
 
 int[] arr = { 1,2,3};
-TwoSumDictionary(arr, 4);
+Print(TwoSumDictionary(arr, 4));
 //Print(TwoSum(arr, 4)); // суммирует в пару число, по неск. раз
 //Console.WriteLine();
 //Print(TwoSumIndex(arr, 4)); // 1 и 2; 1 и 6
@@ -82,7 +82,8 @@ static IEnumerable<(int, int)> TwoSumDictionary(int[] numbers, int target)
 
             if (delta == item.Value)
             {
-                Console.WriteLine($"{i}-{item.Key}") ;
+                result.Add((i,item.Key));
+                //Console.WriteLine($"{i}-{item.Key}") ;
             }
 
         }
