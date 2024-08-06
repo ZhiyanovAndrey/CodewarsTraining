@@ -1,11 +1,13 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 
-
+// В этом примере зависимость IDataRepository внедряется в BusinessLogic через конструктор,
+// что обеспечивает слабую связанность и упрощает тестирование компонентов.
 
 IDataRepository repo = new DataRepository();
-BusinessLogic logic = new BusinessLogic(repo);
+BusinessLogic logic = new BusinessLogic(repo); //  зависимость IDataRepository внедряется в BusinessLogic через конструктор,
 logic.ProcessData("Example data");
+Console.ReadKey();  
 
 
 public interface IDataRepository
@@ -23,9 +25,7 @@ public class DataRepository : IDataRepository
 
 public class BusinessLogic
 {
-    private readonly
-
- IDataRepository _dataRepository;
+    private readonly IDataRepository _dataRepository;
 
     // Constructor injection
     public BusinessLogic(IDataRepository dataRepository)
