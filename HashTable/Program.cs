@@ -48,6 +48,30 @@ static void Print(IEnumerable<(int, int)> ints)
     }
 }
 
+
+ static IEnumerable<int> TwoSum(int[] numbers, int target)
+{
+
+    var dic = new Dictionary<int, int>();
+
+    for (int i = 0; i < numbers.Length; i++)
+    {
+        int delta = target - numbers[i];
+
+        // если нет совпадений то возвращаем индекс num существует 
+        if (dic.TryGetValue(delta, out int index))
+        {
+            return new int[] { i, index };
+        }
+        else dic[numbers[i]] = i;
+
+    }
+
+    // выведем пустой массив если нет совпадений
+    return new int[2];
+
+}
+
 // Ищем остаток от вычитания и ключ - остаток, значение - индекс
 static IEnumerable<(int, int)> TwoSumDictionary(int[] numbers, int target)
 {
