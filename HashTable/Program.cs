@@ -80,7 +80,7 @@ static IEnumerable<int> TwoSumDictionary(int[] numbers, int target)
 
     return new int[2];
 
-
+}
 
 
     static int[] TwoSum(int[] numbers, int target)
@@ -103,10 +103,13 @@ static IEnumerable<int> TwoSumDictionary(int[] numbers, int target)
     }
 
 
-
-
-   
+{
+    static int[] TwoSumLINQ(int[] numbers, int target) => numbers
+        .Select((x, i) => new[] { i, Array.IndexOf(numbers, target - x, i + 1) }).First(x => x[1] != -1);
 }
+
+
+
 
 
 
