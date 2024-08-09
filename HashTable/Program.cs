@@ -30,8 +30,8 @@ Console.WriteLine("Hello, World!");
 //TwoSum(new[] { 1, 2, 3 }, 4).OrderBy(a => a).ToArray();
 //int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2, 2, 4, 0, 6, 6, 6 };
 
-int[] arr = { 1,2,3};
-Print(TwoSumDictionary(arr, 4));
+int[] arr = { 9, 5, 5, 0 };
+Print(TwoSum(arr, 4));
 //Print(TwoSum(arr, 4)); // суммирует в пару число, по неск. раз
 //Console.WriteLine();
 //Print(TwoSumIndex(arr, 4)); // 1 и 2; 1 и 6
@@ -40,7 +40,8 @@ Print(TwoSumDictionary(arr, 4));
 
 Console.ReadKey();
 
-static void Print(IEnumerable<(int, int)> ints)
+
+static void Print(IEnumerable<int> ints)
 {
     foreach (var item in ints)
     {
@@ -48,11 +49,19 @@ static void Print(IEnumerable<(int, int)> ints)
     }
 }
 
+//static void Print(IEnumerable<(int, int)> ints)
+//{
+//    foreach (var item in ints)
+//    {
+//        Console.WriteLine(item);
+//    }
+//}
 
- static IEnumerable<int> TwoSum(int[] numbers, int target)
+
+static IEnumerable<int> TwoSumDictionary(int[] numbers, int target)
 {
-
-    var dic = new Dictionary<int, int>();
+    //словарь для хранения уже просмотренных чисел
+    System.Collections.Generic.Dictionary<int, int> dic = new Dictionary<int, int>();
 
     for (int i = 0; i < numbers.Length; i++)
     {
@@ -61,147 +70,43 @@ static void Print(IEnumerable<(int, int)> ints)
         // если нет совпадений то возвращаем индекс num существует 
         if (dic.TryGetValue(delta, out int index))
         {
-            return new int[] { i, index };
+            var arr = new int[] { i, index };
+            System.Array.Sort(arr);
+            return arr;
         }
-        else dic[numbers[i]] = i;
+        else dic[numbers[i]] = i; // запись 1,0; 2.1; 
 
     }
 
-    // выведем пустой массив если нет совпадений
     return new int[2];
 
-}
 
-// Ищем остаток от вычитания и ключ - остаток, значение - индекс
-static IEnumerable<(int, int)> TwoSumDictionary(int[] numbers, int target)
-{
-    int delta = 0;
-    var result = new HashSet<(int, int)>();
-    var dic = new Dictionary<int, int>();
 
-    for (int i = 0; i < numbers.Length; i++)
+
+    static int[] TwoSum(int[] numbers, int target)
     {
 
-
-        dic.Add(i, numbers[i]);
-
-
-    }
-
-    foreach (var item in dic)
-    {
-
-        Console.WriteLine($"{item.Key} - {item.Value}");
-
-    }
-    Console.WriteLine();
-  
-
-    for (int i = 0; i < numbers.Length; i++)
-    {
-        delta = target - numbers[i];
-
-        foreach (var item in dic)
+        for (int i = 0; i < numbers.Length - 1; i++)
         {
-
-            if (delta == item.Value)
+            for (int j = i + 1; j < numbers.Length; j++)
             {
-                result.Add((i,item.Key));
-                //Console.WriteLine($"{i}-{item.Key}") ;
+                int a = numbers[i] + numbers[j];
+                if (a == target)
+                {
+                    return new[] { i, j };
+                }
+
             }
 
         }
-
-    }
-
-
-    // выведем значения у которых ключ равен 
-    return result;
-
-}
-
-
-static IEnumerable<(int, int)> TwoSum(int[] numbers, int target)
-{
-
-    var result = new HashSet<(int, int)>(); // удаляет дубликаты, если 2 раза 2,2,2,2 то покажет только (2,2), если List
-                                            // то повторы с каждым значением
-
-
-    for (int i = 0; i < numbers.Length - 1; i++)
-    {
-        for (int j = i + 1; j < numbers.Length; j++)
-        {
-            int a = numbers[i] + numbers[j];
-            if (a == target)
-            {
-
-                //new[] { numbers[i], numbers[j] };
-                result.Add((numbers[i], numbers[j]));
-            }
-
-        }
-
-    }
-
-
-    return result;
-
-}
-
-static IEnumerable<(int, int)> TwoSumIndex(int[] numbers, int target)
-{
-
-    var result = new List<(int, int)>(); // удаляет дубликаты, если 2 раза 2,2,2,2 то покажет только (2,2)
-    List<int> list = new List<int>(numbers);
-
-    for (int i = 0; i < list.Count - 1; i++)
-    {
-        for (int j = i + 1; j < list.Count; j++)
-        {
-            int a = list[i] + list[j];
-            if (a == target)
-            {
-
-                //new[] { numbers[i], numbers[j] };
-                result.Add((numbers[i], numbers[j]));
-                //list.Remove(numbers[i]); 
-                //list.Remove(numbers[j]); 
-            }
-
-        }
-
+        return new int[2];
     }
 
 
 
 
-
-    //foreach (var item in list.Skip(^1))
-    //{
-    //    foreach (var item1 in list.Skip(1))
-    //    {
-    //        int a = item + item1;
-    //        if (a == target)
-    //        {
-    //            result.Add((item, item1));
-    //            //list.Remove(item); // удаление в процессе перебора масива дает исключение
-    //            //list.Remove(item1);
-    //        }
-    //    }
-    //}
-
-
-
-
-    return result;
-
+   
 }
 
 
 
-
-
-//    return result.ToArray();
-
-//}
