@@ -30,8 +30,8 @@ Console.WriteLine("Hello, World!");
 //TwoSum(new[] { 1, 2, 3 }, 4).OrderBy(a => a).ToArray();
 //int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2, 2, 4, 0, 6, 6, 6 };
 
-int[] arr = { 9, 5, 5, 0 };
-Print(TwoSum(arr, 4));
+int[] arr = { 9, 5, 4, 0, 1, 3, 0, 0, 0, 2, 2 };
+Print2(TwoSumDictionaryList(arr, 4));
 //Print(TwoSum(arr, 4)); // суммирует в пару число, по неск. раз
 //Console.WriteLine();
 //Print(TwoSumIndex(arr, 4)); // 1 и 2; 1 и 6
@@ -49,19 +49,21 @@ static void Print(IEnumerable<int> ints)
     }
 }
 
-//static void Print(IEnumerable<(int, int)> ints)
-//{
-//    foreach (var item in ints)
-//    {
-//        Console.WriteLine(item);
-//    }
-//}
+static void Print2(IEnumerable<(int, int)> ints)
+{
+    foreach (var item in ints)
+    {
+        Console.WriteLine(item);
+    }
+}
 
 
-static IEnumerable<int> TwoSumDictionary(int[] numbers, int target)
+
+static IEnumerable<(int, int)> TwoSumDictionaryList(int[] numbers, int target)
 {
     //словарь для хранения уже просмотренных чисел
-    System.Collections.Generic.Dictionary<int, int> dic = new Dictionary<int, int>();
+    Dictionary<int, int> dic = new Dictionary<int, int>();
+    var list = new List<(int, int)>();
 
     for (int i = 0; i < numbers.Length; i++)
     {
@@ -70,8 +72,39 @@ static IEnumerable<int> TwoSumDictionary(int[] numbers, int target)
         // если нет совпадений то возвращаем индекс num существует 
         if (dic.TryGetValue(delta, out int index))
         {
+
+            list.Add((index, i));
+  
+
+
+        }
+        else dic[numbers[i]] = i; // запись 1,0; 2.1; 
+
+    }
+
+    return list;
+
+}
+
+
+
+
+
+static IEnumerable<int> TwoSumDictionary(int[] numbers, int target)
+{
+    //словарь для хранения уже просмотренных чисел
+    Dictionary<int, int> dic = new Dictionary<int, int>();
+
+    for (int i = 0; i < numbers.Length; i++)
+    {
+        int delta = target - numbers[i];
+
+        // если нет совпадений то возвращаем индекс num существует 
+        if (dic.TryGetValue(delta, out int index))
+        {
+
             var arr = new int[] { i, index };
-            System.Array.Sort(arr);
+            Array.Sort(arr);
             return arr;
         }
         else dic[numbers[i]] = i; // запись 1,0; 2.1; 
@@ -83,32 +116,37 @@ static IEnumerable<int> TwoSumDictionary(int[] numbers, int target)
 }
 
 
-    static int[] TwoSum(int[] numbers, int target)
+static int[] TwoSum(int[] numbers, int target)
+{
+
+    for (int i = 0; i < numbers.Length - 1; i++)
     {
-
-        for (int i = 0; i < numbers.Length - 1; i++)
+        for (int j = i + 1; j < numbers.Length; j++)
         {
-            for (int j = i + 1; j < numbers.Length; j++)
+            int a = numbers[i] + numbers[j];
+            if (a == target)
             {
-                int a = numbers[i] + numbers[j];
-                if (a == target)
-                {
-                    return new[] { i, j };
-                }
-
+                return new[] { i, j };
             }
 
         }
-        return new int[2];
+
     }
-
-
-{
-    static int[] TwoSumLINQ(int[] numbers, int target) => numbers
-        .Select((x, i) => new[] { i, Array.IndexOf(numbers, target - x, i + 1) }).First(x => x[1] != -1);
+    return new int[2];
 }
 
 
+
+static int[] TwoSumLINQ(int[] numbers, int target) => numbers
+    .Select((x, i) => new[] { i, Array.IndexOf(numbers, target - x, i + 1) }).First(x => x[1] != -1);
+
+
+static int[] TwoSumLINQ1(int[] n, int u)
+{
+    int i = 0;
+    return new int[] { i = Array.IndexOf(n, n.Where(t => n.Contains(u - t)).First()), Array.LastIndexOf(n, u - n[i]) };
+
+}
 
 
 
