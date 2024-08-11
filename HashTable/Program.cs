@@ -74,11 +74,12 @@ static IEnumerable<(int, int)> TwoSumDictionaryList(int[] numbers, int target)
         {
 
             list.Add((index, i));
+            dic.Clear();    
   
 
 
         }
-        else dic[numbers[i]] = i; // запись 1,0; 2.1; 
+        else dic[numbers[i]] = i;  
 
     }
 
