@@ -30,9 +30,9 @@ Console.WriteLine("Hello, World!");
 //TwoSum(new[] { 1, 2, 3 }, 4).OrderBy(a => a).ToArray();
 //int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2, 2, 4, 0, 6, 6, 6 };
 
-int[] arr = { 9, 5, 4, 0, 1, 3, 0, 0, 0, 2, 2 };
+int[] arr = { 1, 2, 3, 2, 5, 8, 3, 2, 2, 4, 0, 6, 6, 6 };
 Print2(TwoSumDictionaryList(arr, 4));
-//Print(TwoSum(arr, 4)); // суммирует в пару число, по неск. раз
+//Print(TwoSumLINQ(arr, 4)); // суммирует в пару число, по неск. раз
 //Console.WriteLine();
 //Print(TwoSumIndex(arr, 4)); // 1 и 2; 1 и 6
 
@@ -65,6 +65,7 @@ static IEnumerable<(int, int)> TwoSumDictionaryList(int[] numbers, int target)
     Dictionary<int, int> dic = new Dictionary<int, int>();
     var list = new List<(int, int)>();
 
+
     for (int i = 0; i < numbers.Length; i++)
     {
         int delta = target - numbers[i];
@@ -83,7 +84,14 @@ static IEnumerable<(int, int)> TwoSumDictionaryList(int[] numbers, int target)
 
     }
 
+    if (list.Count != 0)
+    {
     return list;
+    }
+
+    throw new ArgumentException("No two sum solution");
+
+
 
 }
 
